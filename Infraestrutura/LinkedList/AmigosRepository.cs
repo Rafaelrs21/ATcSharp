@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Infraestrutura
+namespace Infraestrutura.LinkedList
 {
     public class AmigosRepository : IAmigosRepository
     {
-        private static List<Amigos> amigosLista = new List<Amigos>();
+        private static LinkedList<Amigos> amigosLista = new LinkedList<Amigos>();
         private const string LOCAL_ARQUIVO = @"C:\Users\Guilherme\Documents\GitHub\ATcSharp\App-Data\Lista_Amigos.txt";
 
         public AmigosRepository()
@@ -35,14 +35,14 @@ namespace Infraestrutura
 
                 var carro = new Amigos(id, nome, sobrenome, dataNascimento);
 
-                amigosLista.Add(carro);
+                amigosLista.AddLast(carro);
             }
         }
 
         public void AddAmigo(Amigos amigo)
         {
 
-            amigosLista.Add(amigo);
+            amigosLista.AddLast(amigo);
             File.WriteAllLines(LOCAL_ARQUIVO, amigosLista.Select(amigo => amigo.ToString()));
         }
 
@@ -60,14 +60,17 @@ namespace Infraestrutura
 
         }
 
-        public void UpdateAmigo()
+        public void UpdateAmigo(Amigos amigo)
         {
+            var amigoIndex = amigosLista.FirstOrDefault(x => x.IdAmigo == amigo.IdAmigo);
+            amigosLista.Find(amigoIndex).Value = amigo;
+
             File.WriteAllLines(LOCAL_ARQUIVO, amigosLista.Select(amigo => amigo.ToString()));
         }
 
         public List<Amigos> GetAll()
         {
-            return amigosLista;
+            return amigosLista.ToList();
 
         }
 

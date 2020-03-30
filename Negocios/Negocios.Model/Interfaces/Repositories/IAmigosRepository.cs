@@ -11,7 +11,7 @@ namespace Negocios.Model.Interfaces.Repositories
         List<Amigos> SearchAmigo(string parametroBusca);
         void AddAmigo(Amigos amigo);
         void DeleteAmigo(Amigos amigo);
-        void UpdateAmigo();
+        void UpdateAmigo(Amigos amigo);
         List<Amigos> GetAll();
         List<Amigos> GetAniversariantesDia();
 

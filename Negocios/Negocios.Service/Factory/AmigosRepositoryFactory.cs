@@ -1,8 +1,5 @@
-﻿using Infraestrutura;
-using Negocios.Model.Interfaces.Repositories;
+﻿using Negocios.Model.Interfaces.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Negocios.Service.Factory
 {
@@ -10,7 +7,20 @@ namespace Negocios.Service.Factory
     {
         public static IAmigosRepository Create()
         {
-            return new AmigosRepository();
+            return Create(TipoRepository.List);
+        }
+
+        public static IAmigosRepository Create(TipoRepository tipoRepository)
+        {
+            switch (tipoRepository)
+            {
+                case TipoRepository.List:
+                    return new Infraestrutura.List.AmigosRepository();
+                case TipoRepository.LinkedList:
+                    return new Infraestrutura.LinkedList.AmigosRepository();
+                default:
+                    throw new NotImplementedException("Não existe repositório padrão!");
+            }
         }
 
     }

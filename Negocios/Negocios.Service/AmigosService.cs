@@ -30,15 +30,8 @@ namespace Negocios.Service
 
         public void UpdateAmigo(Amigos amigo)
         {
-            var listaAmigos = repository.GetAll();
-            for (int i = 0; i < listaAmigos.Count; i++)
-            {
-                if (listaAmigos[i].IdAmigo == amigo.IdAmigo)
-                {
-                    listaAmigos[i] = amigo;
-                }
-            }
-            repository.UpdateAmigo();
+            repository.UpdateAmigo(amigo);
+
         }
 
          public int RetornarId()
@@ -49,6 +42,7 @@ namespace Negocios.Service
              for (int i = 0; i < listaAmigo.Count; i++)
              {
                  ultimoId = listaAmigo[i].IdAmigo;
+                break;
              }
         
              return ultimoId + 1;
