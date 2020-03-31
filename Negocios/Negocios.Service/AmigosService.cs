@@ -51,5 +51,33 @@ namespace Negocios.Service
         {
             return repository.GetAniversariantesDia();
         }
+
+        public string CalcularDiasParaAniversario(Amigos amigos)
+        {
+            var dataAtual = DateTime.Now;
+
+            var diaNascimento = amigos.DataNascimentoAmigo.Day;
+            var MesNascimento = amigos.DataNascimentoAmigo.Month;
+            var AnoAtual = dataAtual.Year;
+
+            DateTime dataAniversarioAnoAtual = new DateTime(AnoAtual, MesNascimento, diaNascimento);
+
+            if (diaNascimento == dataAtual.Day & MesNascimento == dataAtual.Month)
+            {
+                return "Parabens, o aniversario do seu amigo é hoje";
+            }
+            else
+            {
+                if (dataAniversarioAnoAtual.CompareTo(dataAtual) < 0)
+                {
+                    return "Amigo já fez aniversario esse ano";
+                }
+                else if (dataAniversarioAnoAtual.CompareTo(DateTime.Now) > 0)
+                {
+                    return (dataAniversarioAnoAtual.AddDays(1).Subtract(dataAtual)).ToString("%d");
+                }
+            }
+            return "Não foi possivel calcular!";
+        }
     }
 }

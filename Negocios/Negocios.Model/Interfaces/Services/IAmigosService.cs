@@ -13,5 +13,6 @@ namespace Negocios.Model.Interfaces.Services
         void UpdateAmigo(Amigos amigo);
         int RetornarId();
         List<Amigos> GetAniversariantesDia();
+        string CalcularDiasParaAniversario(Amigos amigos);
     }
 }

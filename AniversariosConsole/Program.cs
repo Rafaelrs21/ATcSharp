@@ -75,13 +75,14 @@ namespace AniversariosConsole
                         }
 
                         var amigoEscolhido = pessoasEncontradas[InputAmigoUsuario];
+                        var calculoAniversario = services.CalcularDiasParaAniversario(amigoEscolhido);
 
                         Console.WriteLine("");
                         Console.WriteLine("Exibindo dados do amigo:");
                         Console.WriteLine($"Nome: {amigoEscolhido.NomeAmigo}");
                         Console.WriteLine($"Sobrenome:{amigoEscolhido.SobrenomeAmigo}");
                         Console.WriteLine($"Data de nascimento: {amigoEscolhido.DataNascimentoAmigo.ToString("d")}");
-                        Console.WriteLine($"Dias Faltantes para aniversario: {amigoEscolhido.CalcularDiasParaAniversario()}");
+                        Console.WriteLine($"Dias Faltantes para aniversario: {calculoAniversario}");
                         Console.WriteLine("1- Editar Usuario");
                         Console.WriteLine("2- Excluir Usuario");
                         Console.WriteLine("3- Retornar ao menu");
