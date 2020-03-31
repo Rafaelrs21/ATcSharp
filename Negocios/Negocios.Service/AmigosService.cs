@@ -42,7 +42,6 @@ namespace Negocios.Service
              for (int i = 0; i < listaAmigo.Count; i++)
              {
                  ultimoId = listaAmigo[i].IdAmigo;
-                break;
              }
         
              return ultimoId + 1;
